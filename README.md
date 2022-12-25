@@ -1,10 +1,8 @@
-This repo is for aws studygroup
+This repo is for aws study group.
 
-It is based on 
+It is based on [this tutorial.](https://towardsaws.com/build-push-docker-image-to-aws-ecr-using-github-actions-8396888a8f9e)
 
-   https://towardsaws.com/build-push-docker-image-to-aws-ecr-using-github-actions-8396888a8f9e
-
-Overall goal is to push an image into ECR when a commit to "production" branch is made in github
+The overall goal is to push an image into ECR when a commit to "production" branch is made in GitHub.
 
 ## Features:
 
