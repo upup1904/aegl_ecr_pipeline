@@ -9,6 +9,7 @@ Overall goal is to push an image into ECR when a commit to "production" branch i
 ## Features:
 
 	- Milestone 0:  Can duplicate the source article - put something in ECR via github actions
+		done, tagged MS0
 	- Milestone 1:  Restrict commit to branch "production"
 	- Milestone 2:  Can print out the git coimmit hash 
 	- Milestone 3: 	print out configuration info from aws system manager parameter store, and a secret from AWS secrets manager
