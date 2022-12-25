@@ -1,1 +1,1 @@
-add bad key, change to one word in github
+resotore good secret

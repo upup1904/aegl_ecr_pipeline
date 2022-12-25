@@ -33,7 +33,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: 948074422901.dkr.ecr.us-east-1.amazonaws.com/aegl_poc_xmas
-        IMAGE_TAG: aegl_poc_xmas
+        IMAGE_TAG: current
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
