@@ -1,12 +1,29 @@
 """function to get an AWS secret"""
-import botocore 
-import botocore.session 
-from aws_secretsmanager_caching import SecretCache, SecretCacheConfig 
+import boto3
+from botocore.exceptions import ClientError
 
-client = botocore.session.get_session().create_client('secretsmanager', region_name='us-east-1')
-cache_config = SecretCacheConfig()
-cache = SecretCache( config = cache_config, client = client)
 
 def get_secret(secret_name):
-    return cache.get_secret_string(secret_name)
+
+    region_name = "us-east-1"
+
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    try:
+        get_secret_value_response = client.get_secret_value(
+            SecretId=secret_name
+        )
+    except ClientError as e:
+        # For a list of exceptions thrown, see
+        # https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+        raise e
+
+    # Decrypts secret using the associated KMS key.
+    secret = get_secret_value_response['SecretString']
+    return secret
 
