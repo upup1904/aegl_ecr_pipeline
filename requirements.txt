@@ -1,0 +1,3 @@
+botocore 
+aws_secretsmanager_caching
+
