@@ -14,7 +14,7 @@ def get_param(param_name, region_name="us-east-1"):
 
     try:
         param_dict = client.get_parameter(Name=param_name, WithDecryption=True)
-        print(param_dict["Parameter"]["Value"])
+        return param_dict["Parameter"]["Value"]
 
     except Exception as e:
         print(f"got exception {e}")
