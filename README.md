@@ -1,17 +1,29 @@
-This repo is for aws studygroup
+This repo is for aws study group.
 
-It is based on 
+It is based on [this tutorial.](https://towardsaws.com/build-push-docker-image-to-aws-ecr-using-github-actions-8396888a8f9e)
 
-   https://towardsaws.com/build-push-docker-image-to-aws-ecr-using-github-actions-8396888a8f9e
-
-Overall goal is to push an image into ECR when a commit to "production" branch is made in github
+The overall goal is to push an image into ECR when a commit to "production" branch is made in GitHub.
 
 ## Features:
 
 	- Milestone 0:  Can duplicate the source article - put something in ECR via github actions
 		done, tagged MS0
 	- Milestone 1:  Restrict commit to branch "production"
-	- Milestone 2:  Can print out the git coimmit hash 
+		done, tagged MS1
+	- Milestone 2:  Can print out the git commit hash 
+	    to run this from AWS Command line
+		sudo amazon-linux-extras install docker 
+		sudo service docker start
+	    sudo usermod -aG docker ec2-user
+		sudo systemctl enable docker
+	    You have to loging to docker -- configure aws:
+		aws configure
+		aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 948074422901.dkr.ecr.us-east-1.amazonaws.com
+		(this gives a warning about stored password)
+		docker run 948074422901.dkr.ecr.us-east-1.amazonaws.com/aegl_poc_xmas:current
+	    (that tag comes from IMAGE_TAG in deploy.yml that was run from github
+		After all that, you can see the output
+
 	- Milestone 3: 	print out configuration info from aws system manager parameter store, and a secret from AWS secrets manager
 	- Milestone 4:  Cut back ecr_deployer permissions to minimum needed.
 
