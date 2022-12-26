@@ -25,7 +25,15 @@ The overall goal is to push an image into ECR when a commit to "production" bran
 		After all that, you can see the output
 
 	- Milestone 3: 	print out configuration info from aws system manager parameter store, and a secret from AWS secrets manager
+	  # to get secrets, you can add managed policy SecretsManagerReadWrite
+	  # for parms there is no managed policy.  Create a user managed policy  allowing
+	           "ssm:DescribeParameters",
+                "ssm:GetParametersByPath",
+                "ssm:GetParameters",
+                "ssm:GetParameter"
+	# and attach it to the role
 	- Milestone 4:  Cut back ecr_deployer permissions to minimum needed.
+	  #create a cloud trail that will capture events used by the service 
 
 ## Followups?
 	- How to use "environment" in github actions
