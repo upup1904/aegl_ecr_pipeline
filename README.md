@@ -33,11 +33,43 @@ The overall goal is to push an image into ECR when a commit to "production" bran
                 "ssm:GetParametersByPath",
                 "ssm:GetParameters",
                 "ssm:GetParameter"
-	# and attach it to the role
+	# and attach it to the role -- no code
 	- Milestone 4:  Cut back ecr_deployer permissions to minimum needed.
 	  #create a cloud trail that will capture events used by the service 
 	  In Console, IAM, User, Choose to generate a policy.  It will make you 
 	  Choose "Generate policy based on CloudTrail events".   You'll have to fill in details about region, account, and container you want the ECR grants to apply to
+	
+	# ms5 write to s3
+	# create a bucket.  For the bucket, make apolicy that gives the instance roll permission to create files and put buckets.
+	
+```json
+	{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "log permissions",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::948074422901:role/ecsInstanceRole"
+            },
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::cattoast-logs"
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::948074422901:role/ecsInstanceRole"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::cattoast-logs/*"
+        }
+    ]
+}
+```
+	
 
 ## Followups?
 	- How to use "environment" in github actions

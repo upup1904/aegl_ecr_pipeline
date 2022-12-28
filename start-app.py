@@ -1,5 +1,7 @@
+from datetime import datetime
 import os
 
+import boto3
 import botocore.errorfactory
 
 from aws_secret import get_secret
@@ -26,5 +28,17 @@ except Exception as e:
 
 print(f"yippee {commit} / {secret}")
 print(f"port: {aegl_port}; secret port {aegl_port_secret}")
+
+
+import boto3
+
+s3 = boto3.resource('s3',   region_name='us-east-1')
+
+logme = f"port: {aegl_port}; secret port {aegl_port_secret} at {datetime.now().strftime('%d%H%M%S.%f')}"
+blobname = f"log_{datetime.now().strftime('%d%H%M%S.%f')}.txt"
+s3.Object('cattoast-logs', blobname).put(Body=logme)
+
+
+
 
 
