@@ -4,6 +4,8 @@ It is based on [this tutorial.](https://towardsaws.com/build-push-docker-image-t
 
 The overall goal is to push an image into ECR when a commit to "production" branch is made in GitHub.
 
+
+
 ## Features:
 
 	- Milestone 0:  Can duplicate the source article - put something in ECR via github actions
@@ -34,9 +36,12 @@ The overall goal is to push an image into ECR when a commit to "production" bran
 	# and attach it to the role
 	- Milestone 4:  Cut back ecr_deployer permissions to minimum needed.
 	  #create a cloud trail that will capture events used by the service 
+	  In Console, IAM, User, Choose to generate a policy.  It will make you 
+	  Choose "Generate policy based on CloudTrail events".   You'll have to fill in details about region, account, and container you want the ECR grants to apply to
 
 ## Followups?
 	- How to use "environment" in github actions
-	- what is IMAGE_TAG for in "Build, tag, and push" - how dcan it change? 
+	- what is IMAGE_TAG for in "Build, tag, and push" -- Answered, it's the docker image tag, like "latest"
+	- How to run the single job in Fargate as a "batch"
 	
 	
