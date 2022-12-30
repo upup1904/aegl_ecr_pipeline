@@ -36,8 +36,6 @@ blobname = f"log_{datetime.now().strftime('%d%H%M%S.%f')}.txt"
 s3.Object('cattoast-logs', blobname).put(Body=logme)
 
 
-x
-
 
 
 
