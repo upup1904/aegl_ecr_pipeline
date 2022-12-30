@@ -31,7 +31,8 @@ import boto3
 
 s3 = boto3.resource('s3',   region_name='us-east-1')
 
-logme = f"port: {aegl_port}; secret port {aegl_port_secret} at {datetime.now().strftime('%d%H%M%S.%f')}"
+logme = (f"port: {aegl_port}; secret port {aegl_port_secret} at {datetime.now().strftime('%d%H%M%S.%f')}\n"
+         f"and the commit is {commit}")
 blobname = f"log_{datetime.now().strftime('%d%H%M%S.%f')}.txt"
 s3.Object('cattoast-logs', blobname).put(Body=logme)
 
