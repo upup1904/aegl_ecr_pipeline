@@ -15,18 +15,28 @@ except KeyError:
     commit = "unset"
 
 
+secret = "no secrets"
+
+try:
+    aegl_port = get_param("aegl_port")
+    aegl_port_secret = get_param("aegl_port_secret")
+except Exception as e:
+    print(f"There was an exception {e}")
+
+print(f"yippee {commit} / {secret}")
+print(f"port: {aegl_port}; secret port {aegl_port_secret}")
 
 
 import boto3
 
 s3 = boto3.resource('s3',   region_name='us-east-1')
 
-logme = "holy baloney it is thursday"
+logme = f"port: {aegl_port}; secret port {aegl_port_secret} at {datetime.now().strftime('%d%H%M%S.%f')}"
 blobname = f"log_{datetime.now().strftime('%d%H%M%S.%f')}.txt"
 s3.Object('cattoast-logs', blobname).put(Body=logme)
 
 
-
+x
 
 
 
